@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html>
+<title>TourMore</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link rel"shortcut icon" href="logo.jpg" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="mapbox.css">
+  <link rel="stylesheet" type="text/css" href="todo.css">
+  <link rel="stylesheet" type="text/css" href="foursquare.js">
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.css' rel='stylesheet' />
+<link rel="shortcut icon"
+  href="logo.jpg" />
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+body, html {
+    height: 100%;
+    color: #777; spots
+    line-height: 1.8;
+}
+
+/* Create a Parallax Effect */
+.bgimg-1, .bgimg-2, .bgimg-3, .bgimg-4, .bgimg-5, .bgimg-6, .bgimg-7, .bgimg-8 {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* First image (Logo. Full height) */
+.bgimg-1 {
+    background-image: url('nyccrowds.webp');
+    min-height: 100%;
+}
+
+/* Second image (Map) */
+.bgimg-2 {
+    background-image: url("nyccrowds.webp");
+    min-height: 400px;
+}
+
+/* Third image (Tourist Sites) */
+.bgimg-3 {
+    background-image: url("nyccrowds.webp");
+    min-height: 400px;
+}
+
+/* Fourth image (Events) */
+.bgimg-4 {
+    background-image: url("nyccrowds.webp");
+    min-height: 400px;
+}
+
+/* Fifth image (Food Spots) */
+.bgimg-5 {
+    background-image: url("nyccrowds.webp");
+    min-height: 400px;
+}
+
+/* Sixth image (Plan) */
+.bgimg-6 {
+    background-image: url("nyccrowds.webp");
+    min-height: 400px;
+}
+
+/* Seventh image (About Us) */
+.bgimg-7 {
+    background-image: url("nyccrowds.webp");
+    min-height: 400px;
+}
+
+/* Eigth image (Contact) */
+.bgimg-8 {
+    background-image: url("nyccrowds.webp");
+    min-height: 400px;
+}
+
+.w3-wide {letter-spacing: 10px;}
+.w3-hover-opacity {cursor: pointer;}
+
+/* Turn off parallax scrolling for tablets and phones */
+@media only screen and (max-device-width: 1024px) {
+    .bgimg-1, .bgimg-2, .bgimg-3, .bgimg-4, .bgimg-5, .bgimg-6, .bgimg-7, .bgimg-8{
+        background-attachment: scroll;
+    }
+}
+</style>
+<body>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar" id="myNavbar">
+    <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="#home" class="w3-bar-item w3-button">HOME</a>
+    <a href="#map" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-map"></i> MAP</a>
+    <a href="#touristsites" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-globe"></i> TOURIST SITES</a>
+    <a href="#events" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-calendar"></i> EVENTS</a>
+    <a href="#foodspots" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-cutlery"></i> FOOD SPOTS</a>
+    <a href="#plan" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-sticky-note"></i> PLAN</a>
+    <a href="#aboutus" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-info-circle"></i> ABOUT US</a>
+    <a href="#contact" class="w3-bar-item w3-button w3-hide-small"><i class="fa fa-envelope"></i> CONTACT</a>
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-hover-blue">
+      <img src="logo.jpg" style="width:50px;height:50px;">
+    </a>
+  </div>
+
+  <!-- Navbar on small screens -->
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+    <a href="#map" class="w3-bar-item w3-button" onclick="toggleFunction()">MAP</a>
+    <a href="#touristsites" class="w3-bar-item w3-button" onclick="toggleFunction()">TOURIST SITES</a>
+    <a href="#events" class="w3-bar-item w3-button" onclick="toggleFunction()">EVENTS</a>
+    <a href="#foodspots" class="w3-bar-item w3-button" onclick="toggleFunction()">FOOD SPOTS</a>
+    <a href="#plan" class="w3-bar-item w3-button" onclick="toggleFunction()">PLAN</a>
+    <a href="#aboutus" class="w3-bar-item w3-button" onclick="toggleFunction()">ABOUT US</a>
+    <a href="#contact" class="w3-bar-item w3-button" onclick="toggleFunction()">CONTACT</a>
+    <a href="#" class="w3-bar-item w3-button"><img src="logo.jpg" style="width:50px;height:50px;"></a>
+  </div>
+</div>
+
+<!-- First Parallax Image with Logo Text -->
+<div class="bgimg-1 w3-display-container w3-opacity-min" id="home">
+  <div class="w3-display-middle" style="white-space:nowrap;">
+    <span class="w3-center w3-padding-large w3-black w3-xlarge w3-wide w3-animate-opacity">TOUR<span class="w3-hide-small">MORE</span>
+  </div>
+
+</div>
+
+<html>
+<head>
+<style>
+input[type=text] {
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('searchicon.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+    width: 100%;
+}
+</style>
+</head>
+<body>
+
+<!-- Container (About Section) -->
+<div class="w3-content w3-container w3-padding-64" id="about">
+  <h3 class="w3-center">MAP</h3>
+  <link rel="stylesheet" type="text/css" href="mapbox.css">
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.0/mapbox-gl-geocoder.min.js'></script>
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.0/mapbox-gl-geocoder.css' type='text/css' />
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.1/mapbox-gl-directions.js'></script>
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v3.1.1/mapbox-gl-directions.css' type='text/css' />
+<div id='map'></div>
+<script type='text/javascript' src='mapbox.js'></script>
+  <p class="w3-center"><em>Welcome to Tour More!</em></p>
+  <p>Welcome to Tour More! Enter in your current location to A and your destination into B.</p>
+  <div class="w3-row">
+    <div class="w3-col m6 w3-center w3-padding-large">
+      <p><b><i class="fa fa-globe w3-margin-right"></i></b></p><br>
+
+    </div>
+    <!-- Hide this text on small devices -->
+    <div class="w3-col m6 w3-hide-small w3-padding-large">
+      <p> </p>
+    </div>
+  </div>
+  <p class="w3-large w3-center w3-padding-16">Im really good at:</p>
+  <p class="w3-wide"><i class="fa fa-camera"></i>Photography</p>
+  <div class="w3-light-grey">
+    <div class="w3-container w3-padding-small w3-dark-grey w3-center" style="width:90%">90%</div>
+  </div>
+  <p class="w3-wide"><i class="fa fa-laptop"></i>Web Design</p>
+  <div class="w3-light-grey">
+    <div class="w3-container w3-padding-small w3-dark-grey w3-center" style="width:85%">85%</div>
+  </div>
+  <p class="w3-wide"><i class="fa fa-photo"></i>Photoshop</p>
+  <div class="w3-light-grey">
+    <div class="w3-container w3-padding-small w3-dark-grey w3-center" style="width:75%">75%</div>
+  </div>
+</div>
+<p><br><br><br></p>
+
+<div class="w3-row w3-center w3-dark-grey w3-padding-16">
+  <div class="w3-quarter w3-section">
+    <span class="w3-xlarge">60 million+</span><br>
+    Tourists Annually
+  </div>
+  <div class="w3-quarter w3-section">
+    <span class="w3-xlarge">20+</span><br>
+    Tourist Sites
+  </div>
+  <div class="w3-quarter w3-section">
+    <span class="w3-xlarge">10+</span><br>
+    Events Going On
+  </div>
+  <div class="w3-quarter w3-section">
+    <span class="w3-xlarge">50+</span><br>
+    Places To Eat
+  </div>
+</div>
+
+<!-- Second Parallax Image with Portfolio Text -->
+<div class="bgimg-2 w3-display-container w3-opacity-min">
+  <div class="w3-display-middle">
+    <span class="w3-xxlarge w3-text-white w3-wide">TOURIST SITES</span>
+  </div>
+</div>
+
+<!-- Container (Portfolio Section) -->
+<div class="w3-content w3-container w3-padding-64" id="touristsites">
+  <h3 class="w3-center">TOURIST SITES</h3>
+  <p class="w3-center"><em>Here are some of the coolest tourist sites in New York City.<br> Click on the image to get more info.</em></p><br>
+
+  <!-- Responsive Grid. Four columns on tablets, laptops and desktops. Will stack on mobile devices/small screens (100% width) -->
+  <div class="w3-row-padding w3-center">
+    <div class="w3-col m3">
+      <p>Parm</p>
+      <img src="parm.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Chicken parm and other Italian-American classics go gourmet at diner-inspired space.">
+    </div>
+
+    <div class="w3-col m3">
+      <p>La Grenoille</p>
+      <img src="lag.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Longtime restaurant serving time-honored French delicacies in a flower-arrangement-filled space.">
+    </div>
+
+    <div class="w3-col m3">
+      <p>Cafe Luxembourg</p>
+      <img src="lax.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="French comfort food and a Parisian vibe have been drawing A-list types here since 1983.">
+    </div>
+
+    <div class="w3-col m3">
+      <p>Red Farm</p>
+      <img src="redfarm.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Modern outpost for inventive Chinese eats in rustic-chic digs with booths, plus sidewalk seating.">
+    </div>
+  </div>
+
+  <div class="w3-row-padding w3-center w3-section">
+    <div class="w3-col m3">
+      <p>Bustan</p>
+      <img src="bustan.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="This small, contemporary eatery features Mediterranean dishes cooked in a custom clay oven.">
+    </div>
+
+    <div class="w3-col m3">
+      <p>Dovetail</p>
+      <img src="dovetail.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Sleek, bi-level setting for upscale New American fare with fixed price and tasting menus.">
+    </div>
+
+    <div class="w3-col m3">
+      <p>Jean Georges</p>
+      <img src="jeang.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Sophisticated New French eatery boasting floor-to-ceiling windows overlooking Central Park.">
+    </div>
+
+    <div class="w3-col m3">
+      <p>The Smith</p>
+      <img src="thesmith.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Trendy types gather for American eats and specialty drinks at this upbeat hangout and brunch favorite.">
+    </div>
+
+    <div class="w3-col m3">
+      <p>Bea</p>
+      <img src="bea.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Intimate, brick-walled eatery and bar with handcrafted cocktails, eclectic small plates and a courtyard.">
+    </div>
+
+    <div class="w3-col m3">
+      <p>Barney Greengrass</p>
+      <img src="barney.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Jewish deli institution since 1908, known for smoked fish and not taking credit cards.">
+    </div>
+
+    <div class="w3-col m3">
+      <p>Parker and Quinn</p>
+      <img src="parker.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="American dining and creative cocktails set against a vintage backdrop in the Refinery Hotel.">
+    </div>
+
+    <div class="w3-col m3">
+      <p>VITAE</p>
+      <img src="vitae.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="A changing seasonal menu, plus cocktails and wine in a modern bi-level space with a spacious bar.">
+    </div>
+
+    <div class="w3-col m3">
+      <p>Marea</p>
+      <img src="marea.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="High-end Italian seafood and housemade pastas from Michael White in a chic Central Park South setting.">
+    </div>
+
+    <div class="w3-col m3">
+      <p>Keens Steakhouse</p>
+      <img src="keens.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Enormous steaks and signature mutton chops served in a maze of clubby, wood-paneled rooms.">
+    </div>
+
+    <div class="w3-col m3">
+      <p>The Modern</p>
+      <img src="modern.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="French/New American fare in a modernist space with garden views at the Museum of Modern Art.">
+    </div>
+
+    <div class="w3-col m3">
+      <p>ABC Kitchen</p>
+      <img src="abck.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Chic New American eatery via Jean-Georges Vongerichten sourcing local, organic ingredients.">
+    </div>
+  </div>
+
+  <div class="w3-row-padding w3-center w3-section">
+    <div class="w3-col m3">
+      <p>Contra</p>
+      <img src="contra.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Trendy New American venue offering a dinner-only fixed-price menu in bare-bones but chic surrounds.">
+    </div>
+
+    <div class="w3-col m3">
+      <p>Dimes</p>
+      <img src="dimes.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Eclectic, health-conscious Californian-style fare dished in a minimalist, white-and-blond-wood space.">
+    </div>
+
+    <div class="w3-col m3">
+      <p>Stanton Social</p>
+      <img src="stanton.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Eclectic gourmet small plates, high-end cocktails and music in a chic, upscale, 3-level space.">
+    </div>
+
+    <div class="w3-col m3">
+      <p>La Contenta</p>
+      <img src="lacontenta.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Neighborhood place for Mexican food by a native chef-owner, plus mezcals and other agave spirits.">
+    </div>
+
+    <div class="w3-col m3">
+      <p>Cafe Katja</p>
+      <img src="cafekatja.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Goulash, bratwurst and other Austrian eats pair with Bavarian beers at this casual, brick-walled spot.">
+    </div>
+
+    <div class="w3-col m3">
+      <p> One World Observatory (Restaurant)</p>
+      <img src="oner.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Observatory located on floors 100-102 of One World Trade Center, with exhibits and restaurants.">
+    </div>
+
+    <div class="w3-col m3">
+      <p>Sweet Chick</p>
+      <img src="sweetchick.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt=" Rustic-chic eatery with American comfort food, such as chicken and waffles, plus cocktails and brunch.">
+    </div>
+
+    <div class="w3-col m3">
+      <p>Sons of Essex</p>
+      <img src="sons.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Hearty, New American comfort food in a vintage setting complete with a DJ and bustling bar scene.">
+    </div>
+
+
+    <button class="w3-button w3-padding-large w3-light-grey" style="margin-top:64px">LOAD MORE</button>
+  </div>
+</div>
+
+<!-- Modal for full size images on click-->
+<div id="modal01" class="w3-modal w3-black" onclick="this.style.display='none'">
+  <span class="w3-button w3-large w3-black w3-display-topright" title="Close Modal Image"><i class="fa fa-remove"></i></span>
+  <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
+    <img id="img01" class="w3-image">
+    <p id="caption" class="w3-opacity w3-large"></p>
+  </div>
+</div>
+
+<!-- Third Parallax Image with Portfolio Text -->
+<div class="bgimg-3 w3-display-container w3-opacity-min">
+  <div class="w3-display-middle">
+    <span class="w3-xxlarge w3-text-white w3-wide">EVENTS</span>
+  </div>
+</div>
+
+<!-- Container (Portfolio Section) -->
+<div class="w3-content w3-container w3-padding-64" id="events">
+  <h3 class="w3-center">EVENTS</h3>
+  <p class="w3-center"><em>Here are some of the events you can check out during your stay.<br></em></p><br>
+
+  <!-- Responsive Grid. Four columns on tablets, laptops and desktops. Will stack on mobile devices/small screens (100% width) -->
+  <div class="w3-row-padding w3-center">
+    <div class="w3-col m3">
+      <img src="event1.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Event 1">
+    </div>
+
+    <div class="w3-col m3">
+      <img src="/w3images/p2.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Event 2">
+    </div>
+
+    <div class="w3-col m3">
+      <img src="/w3images/p3.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Event 3">
+    </div>
+
+    <div class="w3-col m3">
+      <img src="/w3images/p4.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Event 4">
+    </div>
+  </div>
+
+  <div class="w3-row-padding w3-center w3-section">
+    <div class="w3-col m3">
+      <img src="/w3images/p5.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Event 5">
+    </div>
+
+    <div class="w3-col m3">
+      <img src="/w3images/p6.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Event 6">
+    </div>
+
+    <div class="w3-col m3">
+      <img src="/w3images/p7.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Event 7">
+    </div>
+
+    <div class="w3-col m3">
+      <img src="/w3images/p8.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Event 8">
+    </div>
+    <button class="w3-button w3-padding-large w3-light-grey" style="margin-top:64px">LOAD MORE</button>
+  </div>
+</div>
+
+<div class="bgimg-3 w3-display-container w3-opacity-min">
+  <div class="w3-display-middle">
+    <span class="w3-xxlarge w3-text-white w3-wide">FOOD SPOTS</span>
+  </div>
+</div>
+
+<!-- Container (Portfolio Section) -->
+<div class="w3-content w3-container w3-padding-64" id="foodspots">
+  <h3 class="w3-center">FOOD SPOTS</h3>
+  <p class="w3-center"><em>Here are some of the tastiest food spots you can check out!.<br></em></p><br>
+
+  <a href="https://foursquare.com/intent/venue.html" class="fourSq-widget" data-variant="wide">Search for restaurants by location</a>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script type="text/javascript" src="foursquare.js"></script>
+
+  <!-- Responsive Grid. Four columns on tablets, laptops and desktops. Will stack on mobile devices/small screens (100% width) -->
+  <div class="w3-row-padding w3-center">
+    <div class="w3-row-padding w3-center">
+      <div class="w3-col m3">
+        <p>Parm</p>
+        <img src="centralpark.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Central Park:
+        Central Park, largest and most important public park in Manhattan, New York City. It occupies an area of 840 acres (340 hectares) and extends between 59th and 110th streets (about 2.5 miles [4 km]) and between Fifth and Eighth avenues (about 0.5 miles [0.8 km]).">
+      </div>
+
+      <div class="w3-col m3">
+        <p>Statue of Liberty</p>
+        <img src="statueofliberty.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Statue of Liberty:
+        The Statue of Liberty is a colossal neoclassical sculpture on Liberty Island in New York Harbor in New York City, in the United States. The copper statue, a gift from the people of France to the people of the United States, was designed by French sculptor Frédéric Auguste Bartholdi and built by Gustave Eiffel. The statue was dedicated on October 28, 1886.">
+      </div>
+
+      <div class="w3-col m3">
+        <p>Rockefeller Center</p>
+        <img src="rockefellercenter.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Rockefeller Center:
+        Rockefeller Center is a large complex consisting of 19 high-rise commercial buildings covering 22 acres (89,000 m2) between 48th and 51st Streets in New York City. Commissioned by the Rockefeller family, it is located in the center of Midtown Manhattan, spanning the area between Fifth Avenue and Sixth Avenue. Rockefeller Center was declared a National Historic Landmark in 1987. It is also famous for its annual Christmas tree lighting.">
+      </div>
+
+      <div class="w3-col m3">
+        <p>Empire State Building</p>
+        <img src="empirestatebuilding.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Empire State Building:
+        The Empire State Building is a 102-atory skyscraper located in New York City. It has a roof height of 1,250 feet(381m), and with its antenna included, it stands a total of 1,452 feet (443.2 m) tall. Its name is derived from the nickname for New York, the Empire State. It stood as the world's tallest building for nearly 40 years, from its completion in early 1931 until the topping out of the original World Trade Center's North Tower in late 1970. Following the September 11 attacks in 2001, the Empire State Building was again the tallest building in New York, until One World Trade Center reached a greater height in April 2012. The Empire State Building is currently the fifth-tallest completed skyscraper in the United States and the 35th-tallest in the world. It is also the fifth-tallest freestanding structure in the Americas. When measured by pinnacle height, it is the fourth-tallest building in the United States.">
+      </div>
+    </div>
+
+    <div class="w3-row-padding w3-center w3-section">
+      <div class="w3-col m3">
+        <p>Times Square</p>
+        <img src="timessquare.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Times Square:
+        Times Square is a major commercial intersection, tourist destination, entertainment center and neighborhood in the Midtown Manhattan section of New York City at the junction of Broadway and Seventh Avenue. It stretches from West 42nd to West 47th Streets. Brightly adorned with billboards and advertisements, Times Square is sometimes referred to as 'The Crossroads of the World', 'The Center of the Universe', 'the heart of The Great White Way', and the 'heart of the world'. One of the world's busiest pedestrian areas, it is also the hub of the Broadway Theater District and a major center of the world's entertainment industry.">
+      </div>
+
+      <div class="w3-col m3">
+        <p>Brooklyn Bridge</p>
+        <img src="brooklynbridge.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Brooklyn Bridge:
+        The Brooklyn Bridge is a hybrid cable-stayed/suspension bridge in New York City and is one of the oldest bridges in the United States. Started in 1869 and completed fourteen years later in 1883, it connects the boroughs of Manhattan and Brooklyn by spanning the East River. It has a main span of 1,595.5 feet (486.3 m) and was the first steel-wire suspension bridge constructed. It was originally called the New York and Brooklyn Bridge and the East River Bridge, but it was later dubbed the Brooklyn Bridge, a name coming from an earlier January 25, 1867, letter to the editor of the Brooklyn Daily Eagle and formally so named by the city government in 1915. Since opening, it has become an icon of New York City and was designated a National Historic Landmark in 1964 and a National Historic Civil Engineering Landmark in 1972.">
+      </div>
+
+      <div class="w3-col m3">
+        <p>Battery Park</p>
+        <img src="batterypark.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Battery Park:
+        The Battery  is a 25-acre public park located at the southern tip of Manhattan Island in New York City facing New York Harbor. The park and surrounding area is named for the artillery batteries that were positioned there in the city's early years to protect the settlement behind them.">
+      </div>
+
+      <div class="w3-col m3">
+        <p>One World Trade Center</p>
+        <img src="oneworldcenter.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="One World Trade Center:
+        One World Trade Center (also known as 1 World Trade Center, 1 WTC or Freedom Tower) is the main building of the rebuilt World Trade Center complex in Lower Manhattan, New York City. It is the tallest building in the Western Hemisphere, and the sixth-tallest in the world. The supertall structure has the same name as the North Tower of the original World Trade Center, which was destroyed in the terrorist attacks of September 11, 2001. The new skyscraper stands on the northwest corner of the 16-acre World Trade Center site, on the site of the original 6 World Trade Center. The building's architect was David Childs, whose firm Skidmore, Owings and Merrill (SOM) also designed the Burj Khalifa and the Willis Tower. The construction of below-ground utility relocations, footings, and foundations for the new building began on April 27, 2006. One World Trade Center became the tallest structure in New York City on April 30, 2012, when it surpassed the height of the Empire State Building.">
+      </div>
+
+      <div class="w3-col m3">
+        <p>Chelsea Market</p>
+        <img src="chelseamarket.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Chelsea Market:
+        Chelsea Market is a food hall, shopping mall, office building and television production facility located in the Chelsea neighborhood of the borough of Manhattan, in New York City. It was built in the former National Biscuit Company (Nabisco) factory complex where the Oreo cookie was invented and produced.">
+      </div>
+
+      <div class="w3-col m3">
+        <p>Wall Street</p>
+        <img src="wallstreet.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Wall Street:
+        Wall Street is an eight-block-long street running roughly northwest to southeast from Broadway to South Street, at the East River, in the Financial District of Lower Manhattan in New York City. Over time, the term has become a metonym for the financial markets of the United States as a whole, the American financial services industry (even if financial firms are not physically located there), or New York-based financial interests. Anchored by Wall Street, New York City has been called both the most economically powerful city and the leading financial center of the world, and the city is home to the world's two largest stock exchanges by total market capitalization, the New York Stock Exchange and NASDAQ. Several other major exchanges have or had headquarters in the Wall Street area, including the New York Mercantile Exchange, the New York Board of Trade, and the former American Stock Exchange.">
+      </div>
+
+      <div class="w3-col m3">
+        <p>Museum of Modern Art</p>
+        <img src="moma.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Museum of Modern Art:
+        The Museum of Modern Art (MoMA) has been important in developing and collecting modernist art, and is often identified as one of the largest and most influential museums of modern art in the world. MoMA's collection offers an overview of modern and contemporary art, including works of architecture and design, drawing, painting, sculpture, photography, prints, illustrated books and artist's books, film, and electronic media.The MoMA Library includes approximately 300,000 books and exhibition catalogs, over 1,000 periodical titles, and over 40,000 files of ephemera about individual artists and groups. The archives holds primary source material related to the history of modern and contemporary art.">
+      </div>
+
+      <div class="w3-col m3">
+        <p>The Metropolitan Museum of Art</p>
+        <img src="met.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="The Metropolitan Museum of Art:
+        The Metropolitan Museum of Art, colloquially 'the Met,' is located in New York City and is the largest art museum in the United States, and is among the most visited art museums in the world. Its permanent collection contains over two million works, divided among seventeen curatorial departments. The main building, on the eastern edge of Central Park along Manhattan's Museum Mile, is by area one of the world's largest art galleries. A much smaller second location, The Cloisters at Fort Tryon Park in Upper Manhattan, contains an extensive collection of art, architecture, and artifacts from Medieval Europe. On March 18, 2016, the museum opened the Met Breuer museum at Madison Avenue in the Upper East Side; it extends the museum's modern and contemporary art program.">
+      </div>
+    <button class="w3-button w3-padding-large w3-light-grey" style="margin-top:64px">LOAD MORE</button>
+  </div>
+</div>
+</div>
+<!-- PLAN SITE -->
+
+<div class="bgimg-3 w3-display-container w3-opacity-min">
+  <div class="w3-display-middle">
+    <span class="w3-xxlarge w3-text-white w3-wide">PLAN</span>
+  </div>
+</div>
+
+
+<!-- Container (Portfolio Section) -->
+<div class="w3-content w3-container w3-padding-64" id="plan">
+  <h3 class="w3-center">PLAN</h3>
+  <p class="w3-center"><em>You can plan your trip here!<br></em></p><br>
+
+  <!-- Responsive Grid. Four columns on tablets, laptops and desktops. Will stack on mobile devices/small screens (100% width) -->
+  <div class="w3-row-padding w3-center">
+    <div class="todo" id="plan">
+    <p>1.: <input type="text" name="1."><br>
+    2.: <input type="text" name="2."><br>
+    3.: <input type="text" name="3."><br>
+    4.: <input type="text" name="4."><br>
+    5.: <input type="text" name="5."><br>
+    6.: <input type="text" name="6."><br>
+    7.: <input type="text" name="7."><br>
+    8.: <input type="text" name="8."><br>
+    9.: <input type="text" name="9."><br>
+    10.: <input type="text" name="10."><br>
+  </p>
+</div>
+
+    <div class="w3-col m3">
+      <img src="event1.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt=" 1">
+    </div>
+
+    <div class="w3-col m3">
+      <img src="/w3images/p2.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt=" 2">
+    </div>
+
+    <div class="w3-col m3">
+      <img src="/w3images/p3.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt=" 3">
+    </div>
+
+    <div class="w3-col m3">
+      <img src="/w3images/p4.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt=" 4">
+    </div>
+  </div>
+
+  <div class="w3-row-padding w3-center w3-section">
+    <div class="w3-col m3">
+      <img src="/w3images/p5.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt=" 5">
+    </div>
+
+    <div class="w3-col m3">
+      <img src="/w3images/p6.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt=" 6">
+    </div>
+
+    <div class="w3-col m3">
+      <img src="/w3images/p7.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt=" 7">
+    </div>
+
+    <div class="w3-col m3">
+      <img src="/w3images/p8.jpg" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt=" 8">
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ABOUT Us -->
+<div class="bgimg-3 w3-display-container w3-opacity-min">
+  <div class="w3-display-middle">
+    <span class="w3-xxlarge w3-text-white w3-wide">ABOUT US</span>
+  </div>
+</div>
+
+<!-- Container (Portfolio Section) -->
+<div class="w3-content w3-container w3-padding-64" id="aboutus">
+  <h3 class="w3-center">ABOUT US</h3>
+  <p class="w3-center"><em>Here's a little about each member of the TourMore team.<br></em></p><br>
+
+  <!-- Responsive Grid. Four columns on tablets, laptops and desktops. Will stack on mobile devices/small screens (100% width) -->
+  <div class="w3-row-padding w3-center">
+    <div class="w3-col m3">
+      <p>Wendy</p>
+      <img src="female.png" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Wendy:
+      I'm a 17 year old rising junior at Lincoln Academy. I like math and science, and was inspired in the Girls Who Code Summer Program to learn more about computer science.">
+    </div>
+
+    <div class="w3-col m3">
+      <p>Semaab</p>
+      <img src="female.png" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Semaab:
+      I'm a 17 year old rising senior at the Bronx High School of Science. I was inspired to code as a young child because of my passion for creating new things.">
+    </div>
+
+    <div class="w3-col m3">
+      <p>Sydney</p>
+      <img src="female.png" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Sydney:
+      I'm a 16 year old rising junior who takes feature creeping to the next level.">
+    </div>
+
+    <div class="w3-col m3">
+      <p>Nora</p>
+      <img src="female.png" style="width:100%" onclick="onClick(this)" class="w3-hover-opacity" alt="Nora:
+      I'm a 16 year old rising junior at Forest Hills High School. I had no experience of coding prior to joining Girls Who Code. I hope to pursue coding further in my career.">
+    </div>
+  </div>
+  </div>
+</div>
+
+<!-- Eighth Parallax Image with Portfolio Text -->
+<div class="bgimg-3 w3-display-container w3-opacity-min">
+  <div class="w3-display-middle">
+     <span class="w3-xxlarge w3-text-white w3-wide">CONTACT</span>
+  </div>
+</div>
+
+<!-- Container (Contact Section) -->
+<div class="w3-content w3-container w3-padding-64" id="contact">
+  <h3 class="w3-center">CONTACT</h3>
+  <p class="w3-center"><em>Feel free to ask to us any questions or message any suggestions. We'd love your feedback!</em></p>
+
+  <div class="w3-row w3-padding-32 w3-section">
+    <div class="w3-col m4 w3-container">
+      <!-- Add Google Maps -->
+      <div id="googleMap" class="w3-round-large w3-greyscale" style="width:100%;height:400px;"></div>
+    </div>
+    <div class="w3-col m8 w3-panel">
+      <div class="w3-large w3-margin-bottom">
+        <i class="fa fa-map-marker fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> New York City, New York, US<br>
+        <i class="fa fa-phone fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Phone: 1-800-TOURMORE<br>
+        <i class="fa fa-envelope fa-fw w3-hover-text-black w3-xlarge w3-margin-right"></i> Email: tourmoreny@gmail.com<br>
+      </div>
+      <p>Leave us a message: <i class="fa fa-envelope"></i></p>
+      <p>This started off as our final project for the Girls Who Code summer  program. We noticed many tourists in Manhattan that didn't know where to go and were very lost. It inspired us to create something to help tourists get the most out of their stay. Thus TourMore was born and we have and fun working on it ever since. We hope our users enjoy using TourMore as much as we did making it:).</p>
+      <form action="/action_page.php" target="_blank">
+        <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+          <div class="w3-half">
+            <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
+          </div>
+          <div class="w3-half">
+            <input class="w3-input w3-border" type="text" placeholder="Email" required name="Email">
+          </div>
+        </div>
+        <input class="w3-input w3-border" type="text" placeholder="Message" required name="Message">
+        <button class="w3-button w3-black w3-right w3-section" type="submit">
+          <i class="fa fa-paper-plane"></i> SEND MESSAGE
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="w3-center w3-black w3-padding-64 w3-opacity w3-hover-opacity-off">
+  <a href="#home" class="w3-button w3-light-grey"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+  <div class="w3-xlarge w3-section">
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+  </div>
+  <p>Powered by <a>Wendy, Semaab, Sydney and Nora!  </a><img src="rightss.png" style="width:15px;height:15px;"></p>
+</footer>
+
+<!-- Add Google Maps -->
+<script>
+function myMap()
+{
+  myCenter=new google.maps.LatLng(41.878114, -87.629798);
+  var mapOptions= {
+    center:myCenter,
+    zoom:12, scrollwheel: false, draggable: false,
+    mapTypeId:google.maps.MapTypeId.ROADMAP
+  };
+  var map=new google.maps.Map(document.getElementById("googleMap"),mapOptions);
+
+  var marker = new google.maps.Marker({
+    position: myCenter,
+  });
+  marker.setMap(map);
+}
+
+// Modal Image Gallery
+function onClick(element) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+}
+
+// Change style of navbar on scroll
+window.onscroll = function() {myFunction()};
+function myFunction() {
+    var navbar = document.getElementById("myNavbar");
+    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        navbar.className = "w3-bar" + " w3-card-2" + " w3-animate-top" + " w3-white";
+    } else {
+        navbar.className = navbar.className.replace(" w3-card-2 w3-animate-top w3-white", "");
+    }
+}
+
+// Used to toggle the menu on small screens when clicking on the menu button
+function toggleFunction() {
+    var x = document.getElementById("navDemo");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+    } else {
+        x.className = x.className.replace(" w3-show", "");
+    }
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>
+<!--
+To use this code on your website, get a free API key from Google.
+Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
+-->
+
+</body>
+</html>
